@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Generate">
+   
+              	<property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../Desktop/BIR/java-2019-12/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="TestNG.libraryclasspath">
+    	
+        <pathelement location="../../.p2/pool/plugins/org.testng_7.1.0.r202001120626.jar"/>
+        <pathelement location="../../.p2/pool/plugins/com.beust.jcommander_1.72.0.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.apache-extras.beanshell.bsh_2.0.0.b6.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.yaml.snakeyaml_1.21.0.jar"/>
+    </path>
+    <path id="Plug-in Dependencies.libraryclasspath"/>
+    <path id="Generate.classpath">
+        <path refid="TestNG.libraryclasspath"/>
+        <path refid="Plug-in Dependencies.libraryclasspath"/>
+        <pathelement location="bin"/>
+        <pathelement location="LIbs/selenium/junit-4.12.jar"/>
+        <pathelement location="LIbs/selenium/selenium-server-standalone-3.13.0.jar"/>
+        <pathelement location="LIbs/hamcrest/hamcrest-all-1.3.jar"/>
+        <pathelement location="LIbs/hamcrest/hamcrest-core-1.3.jar"/>
+        <pathelement location="LIbs/hamcrest/hamcrest-generator-1.3.jar"/>
+        <pathelement location="LIbs/hamcrest/hamcrest-integration-1.3.jar"/>
+        <pathelement location="LIbs/hamcrest/hamcrest-library-1.3.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/ATExcelReport.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/commons-collections4-4.1.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/jfreechart.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/jfreechart-dependency-jcommon-1.0.12.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/poi-3.15.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/poi-ooxml-3.15.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/poi-ooxml-schemas-3.15.jar"/>
+        <pathelement location="../../Downloads/AT Excel Report Jars/xmlbeans-2.6.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Generate.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Gen.generateReport">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Gen" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Generate.classpath"/>
+        </junit>
+    </target>
+    <target name="Gen.CreateCategory (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Gen" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Generate.classpath"/>
+        </junit>
+    </target>
+    <target name="LocationModule.CreateLocation (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Gen.LocationModule" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Generate.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

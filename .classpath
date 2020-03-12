@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Generate1/src"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/hamcrest/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/hamcrest/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/hamcrest/hamcrest-generator-1.3.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/hamcrest/hamcrest-integration-1.3.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/hamcrest/hamcrest-library-1.3.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/selenium/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="Generate1/LIbs/selenium/selenium-server-standalone-3.13.0.jar"/>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="output" path="Generate1/bin"/>
+</classpath>
